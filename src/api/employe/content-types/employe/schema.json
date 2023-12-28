@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "employes",
+  "info": {
+    "singularName": "employe",
+    "pluralName": "employes",
+    "displayName": "Employe",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "salary": {
+      "type": "decimal",
+      "min": 0
+    }
+  }
+}

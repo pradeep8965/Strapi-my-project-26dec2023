@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "collages",
+  "info": {
+    "singularName": "collage",
+    "pluralName": "collages",
+    "displayName": "College",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "universities": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::university.university",
+      "mappedBy": "colleges"
+    },
+    "departments": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::department.department",
+      "inversedBy": "colleges"
+    }
+  }
+}
