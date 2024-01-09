@@ -1017,6 +1017,40 @@ export interface ApiFruitFruit extends Schema.CollectionType {
   };
 }
 
+export interface ApiMobileMobile extends Schema.CollectionType {
+  collectionName: 'mobiles';
+  info: {
+    singularName: 'mobile';
+    pluralName: 'mobiles';
+    displayName: 'mobile';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    price: Attribute.Decimal;
+    image: Attribute.Media & Attribute.Required;
+    link: Attribute.Email;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::mobile.mobile',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::mobile.mobile',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiStudentStudent extends Schema.CollectionType {
   collectionName: 'students';
   info: {
@@ -1144,6 +1178,7 @@ declare module '@strapi/types' {
       'api::employe.employe': ApiEmployeEmploye;
       'api::friend.friend': ApiFriendFriend;
       'api::fruit.fruit': ApiFruitFruit;
+      'api::mobile.mobile': ApiMobileMobile;
       'api::student.student': ApiStudentStudent;
       'api::teacher.teacher': ApiTeacherTeacher;
       'api::university.university': ApiUniversityUniversity;
