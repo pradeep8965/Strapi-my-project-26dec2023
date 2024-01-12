@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "countries",
+  "collectionName": "states",
   "info": {
-    "singularName": "country",
-    "pluralName": "countries",
-    "displayName": "Country",
+    "singularName": "state",
+    "pluralName": "states",
+    "displayName": "State",
     "description": ""
   },
   "options": {
@@ -15,10 +15,10 @@
     "name": {
       "type": "string"
     },
-    "state": {
+    "city": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::state.state"
+      "target": "api::city.city"
     }
   }
 }

@@ -768,6 +768,58 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAreaArea extends Schema.CollectionType {
+  collectionName: 'areas';
+  info: {
+    singularName: 'area';
+    pluralName: 'areas';
+    displayName: 'Area';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    cities: Attribute.Relation<
+      'api::area.area',
+      'manyToMany',
+      'api::city.city'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::area.area', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::area.area', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCityCity extends Schema.CollectionType {
+  collectionName: 'cities';
+  info: {
+    singularName: 'city';
+    pluralName: 'cities';
+    displayName: 'City';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    areas: Attribute.Relation<'api::city.city', 'manyToMany', 'api::area.area'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCollageCollage extends Schema.CollectionType {
   collectionName: 'collages';
   info: {
@@ -815,12 +867,18 @@ export interface ApiCountryCountry extends Schema.CollectionType {
     singularName: 'country';
     pluralName: 'countries';
     displayName: 'Country';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     name: Attribute.String;
+    state: Attribute.Relation<
+      'api::country.country',
+      'oneToOne',
+      'api::state.state'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1051,6 +1109,38 @@ export interface ApiMobileMobile extends Schema.CollectionType {
   };
 }
 
+export interface ApiStateState extends Schema.CollectionType {
+  collectionName: 'states';
+  info: {
+    singularName: 'state';
+    pluralName: 'states';
+    displayName: 'State';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    city: Attribute.Relation<'api::state.state', 'oneToOne', 'api::city.city'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::state.state',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::state.state',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiStudentStudent extends Schema.CollectionType {
   collectionName: 'students';
   info: {
@@ -1171,6 +1261,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::area.area': ApiAreaArea;
+      'api::city.city': ApiCityCity;
       'api::collage.collage': ApiCollageCollage;
       'api::country.country': ApiCountryCountry;
       'api::course.course': ApiCourseCourse;
@@ -1179,6 +1271,7 @@ declare module '@strapi/types' {
       'api::friend.friend': ApiFriendFriend;
       'api::fruit.fruit': ApiFruitFruit;
       'api::mobile.mobile': ApiMobileMobile;
+      'api::state.state': ApiStateState;
       'api::student.student': ApiStudentStudent;
       'api::teacher.teacher': ApiTeacherTeacher;
       'api::university.university': ApiUniversityUniversity;

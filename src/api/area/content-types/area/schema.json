@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "countries",
+  "collectionName": "areas",
   "info": {
-    "singularName": "country",
-    "pluralName": "countries",
-    "displayName": "Country",
+    "singularName": "area",
+    "pluralName": "areas",
+    "displayName": "Area",
     "description": ""
   },
   "options": {
@@ -15,10 +15,11 @@
     "name": {
       "type": "string"
     },
-    "state": {
+    "cities": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::state.state"
+      "relation": "manyToMany",
+      "target": "api::city.city",
+      "mappedBy": "areas"
     }
   }
 }
