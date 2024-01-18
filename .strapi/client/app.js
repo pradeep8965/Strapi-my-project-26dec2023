@@ -7,6 +7,7 @@ import documentation from "@strapi/plugin-documentation/strapi-admin";
 import i18N from "@strapi/plugin-i18n/strapi-admin";
 import usersPermissions from "@strapi/plugin-users-permissions/strapi-admin";
 import gorestUsers from "../../src/plugins/gorest-users/strapi-admin";
+import reqresUsers from "../../src/plugins/reqres-users/strapi-admin";
 import { renderAdmin } from "@strapi/strapi/admin";
 
 renderAdmin(document.getElementById("strapi"), {
@@ -16,5 +17,6 @@ renderAdmin(document.getElementById("strapi"), {
     i18n: i18N,
     "users-permissions": usersPermissions,
     "gorest-users": gorestUsers,
+    "reqres-users": reqresUsers,
   },
 });

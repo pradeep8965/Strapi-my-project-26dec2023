@@ -5,8 +5,8 @@
  */
 
 import React from 'react';
-import SvgBell from '@strapi/icons/Bell.js';
+import { Puzzle } from '@strapi/icons';
 
-const PluginIcon = () => <SvgBell />;
+const PluginIcon = () => <Puzzle />;
 
 export default PluginIcon;
