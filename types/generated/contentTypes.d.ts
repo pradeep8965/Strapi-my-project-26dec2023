@@ -573,6 +573,132 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginReqresUsersReqresuser extends Schema.CollectionType {
+  collectionName: 'ReqResUser';
+  info: {
+    singularName: 'reqresuser';
+    pluralName: 'reqresusers';
+    displayName: 'ReqResUsers';
+    description: 'ReqResUsers';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    email: Attribute.String;
+    firstname: Attribute.String;
+    lastname: Attribute.String;
+    avatar: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::reqres-users.reqresuser',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::reqres-users.reqresuser',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginReqresUsersPluginuser extends Schema.CollectionType {
+  collectionName: 'PluginUser';
+  info: {
+    singularName: 'pluginuser';
+    pluralName: 'pluginusers';
+    displayName: 'PluginUsers';
+    description: 'PluginUsers';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String;
+    surname: Attribute.String;
+    mobile: Attribute.String;
+    address: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::reqres-users.pluginuser',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::reqres-users.pluginuser',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginReqresUsersCustomplugin extends Schema.CollectionType {
+  collectionName: 'CustomPlugin';
+  info: {
+    singularName: 'customplugin';
+    pluralName: 'customplugins';
+    displayName: 'CustomPlugin';
+    description: 'CustomPlugins';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String;
+    mobile: Attribute.String;
+    gender: Attribute.String;
+    email: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::reqres-users.customplugin',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::reqres-users.customplugin',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginI18NLocale extends Schema.CollectionType {
   collectionName: 'i18n_locale';
   info: {
@@ -1257,6 +1383,9 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::reqres-users.reqresuser': PluginReqresUsersReqresuser;
+      'plugin::reqres-users.pluginuser': PluginReqresUsersPluginuser;
+      'plugin::reqres-users.customplugin': PluginReqresUsersCustomplugin;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
