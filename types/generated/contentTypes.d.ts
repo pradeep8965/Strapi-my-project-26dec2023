@@ -699,6 +699,44 @@ export interface PluginReqresUsersCustomplugin extends Schema.CollectionType {
   };
 }
 
+export interface PluginFriendsContentTypeFriend extends Schema.CollectionType {
+  collectionName: 'friend';
+  info: {
+    singularName: 'content-type-friend';
+    pluralName: 'content-type-friends';
+    displayName: 'Friend';
+    description: 'Friend';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::friends.content-type-friend',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::friends.content-type-friend',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginI18NLocale extends Schema.CollectionType {
   collectionName: 'i18n_locale';
   info: {
@@ -1140,37 +1178,6 @@ export interface ApiEmployeEmploye extends Schema.CollectionType {
   };
 }
 
-export interface ApiFriendFriend extends Schema.CollectionType {
-  collectionName: 'friends';
-  info: {
-    singularName: 'friend';
-    pluralName: 'friends';
-    displayName: 'Friend';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::friend.friend',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::friend.friend',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiFruitFruit extends Schema.CollectionType {
   collectionName: 'fruits';
   info: {
@@ -1386,6 +1393,7 @@ declare module '@strapi/types' {
       'plugin::reqres-users.reqresuser': PluginReqresUsersReqresuser;
       'plugin::reqres-users.pluginuser': PluginReqresUsersPluginuser;
       'plugin::reqres-users.customplugin': PluginReqresUsersCustomplugin;
+      'plugin::friends.content-type-friend': PluginFriendsContentTypeFriend;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
@@ -1397,7 +1405,6 @@ declare module '@strapi/types' {
       'api::course.course': ApiCourseCourse;
       'api::department.department': ApiDepartmentDepartment;
       'api::employe.employe': ApiEmployeEmploye;
-      'api::friend.friend': ApiFriendFriend;
       'api::fruit.fruit': ApiFruitFruit;
       'api::mobile.mobile': ApiMobileMobile;
       'api::state.state': ApiStateState;

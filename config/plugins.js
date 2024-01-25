@@ -11,6 +11,10 @@ module.exports = { //JS Object Exporting
     'reqres-users': {
       enabled: true,
       resolve: './src/plugins/reqres-users'
+    }, 
+    'friends': {
+      enabled: true,
+      resolve: './src/plugins/friends'
     },
     //2. Methods/Function
     // ...
