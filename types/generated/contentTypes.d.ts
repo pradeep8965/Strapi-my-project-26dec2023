@@ -700,12 +700,12 @@ export interface PluginReqresUsersCustomplugin extends Schema.CollectionType {
 }
 
 export interface PluginFriendsContentTypeFriend extends Schema.CollectionType {
-  collectionName: 'friend';
+  collectionName: 'friends';
   info: {
     singularName: 'content-type-friend';
     pluralName: 'content-type-friends';
-    displayName: 'Friend';
-    description: 'Friend';
+    displayName: 'friend';
+    description: 'friend ';
   };
   options: {
     draftAndPublish: false;
